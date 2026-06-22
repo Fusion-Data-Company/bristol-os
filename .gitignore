@@ -6,6 +6,9 @@ deals/
 research/
 *.local.md
 .env
-.env.*
+.env.local
+.env.*.local
+!.env.example
 *.key
 secrets*
+claude_desktop_config.local.json

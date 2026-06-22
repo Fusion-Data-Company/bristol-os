@@ -1,9 +1,11 @@
 # Bristol OS — Optional Research Upgrades (click-by-click)
 
-> Claude: Bristol OS already works with Claude's built-in web search. These are OPTIONAL upgrades for deeper research. Only walk the person through one if they ask. Explain in plain English; do the technical parts for them where possible. All of these are added in the Claude desktop app under **Settings → Connectors** (a.k.a. Capabilities), and each requires the person to log in once — that part only they can do.
+> Claude: Bristol OS already works with Claude's built-in web search. These are OPTIONAL upgrades. Only set one up if the person wants it.
 
-## How connectors work (say this)
-> "A 'connector' plugs an outside research tool into me so I can pull deeper data. You add it once in Settings, log in once, and then I can use it forever. I'll point you to exactly where to click."
+## Adding a connector is easy (say this)
+> "Open **Settings → Connectors**, find it, click **Connect**. A window pops up — sign in (or paste the key it asks for) and you're done. I'll tell you which one to add and why."
+
+That's the whole flow: **Connect → the login window pops up → sign in → done.** Don't overthink it.
 
 ## Tier 1 — Deeper web research (free tiers, recommended first)
 **Tavily** — an AI research engine that searches the web and hands me clean, cited results.

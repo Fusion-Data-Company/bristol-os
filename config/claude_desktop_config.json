@@ -1,0 +1,61 @@
+{
+  "_comment": "Bristol OS power layer — reference Claude Desktop MCP config. Replace YOUR_* placeholders with real keys, or (better) put keys in config/.env and run config/setup.sh to merge this safely into your real config. Each server's run command is verified from its repo README (June 2026). Census + Omnisearch are clone-and-build — see CONFIG-GUIDE.md.",
+  "mcpServers": {
+    "osm": {
+      "command": "uvx",
+      "args": ["osm-mcp-server"]
+    },
+    "sec-edgar": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-e", "SEC_EDGAR_USER_AGENT=Bristol Development Group (yeager@bristoldevelopment.com)",
+        "stefanoamorelli/sec-edgar-mcp:latest"
+      ]
+    },
+    "fred": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-e", "FRED_API_KEY=YOUR_FRED_API_KEY",
+        "stefanoamorelli/fred-mcp-server:latest"
+      ]
+    },
+    "tavily": {
+      "command": "npx",
+      "args": ["-y", "tavily-mcp@latest"],
+      "env": {
+        "TAVILY_API_KEY": "YOUR_TAVILY_API_KEY",
+        "DEFAULT_PARAMETERS": "{\"search_depth\":\"advanced\",\"max_results\":10}"
+      }
+    },
+    "exa": {
+      "command": "npx",
+      "args": ["-y", "exa-mcp-server"],
+      "env": {
+        "EXA_API_KEY": "YOUR_EXA_API_KEY"
+      }
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_API_KEY",
+        "FIRECRAWL_RETRY_MAX_ATTEMPTS": "5",
+        "FIRECRAWL_CREDIT_WARNING_THRESHOLD": "2000"
+      }
+    },
+    "google-maps": {
+      "command": "npx",
+      "args": ["-y", "@cablate/mcp-google-map", "--stdio"],
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "YOUR_GOOGLE_MAPS_API_KEY",
+        "GOOGLE_MAPS_ENABLED_TOOLS": "maps_geocode,maps_directions,maps_search_places"
+      }
+    },
+    "alphavantage": {
+      "command": "uvx",
+      "args": ["marketdata-mcp-server", "YOUR_ALPHAVANTAGE_API_KEY"]
+    }
+  }
+}

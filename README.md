@@ -37,6 +37,14 @@ Bristol OS ships a fully-configured **tool catalog** and a **verified GitHub pac
 
 Two paths, on purpose: **basic users** get one-click first-party connectors only; **Rob / a technical helper** gets the full open-source power setup. Nobody non-technical is ever asked to touch a command line.
 
+### Power layer (`config/`) — pre-configured, for Rob / a technical helper
+Ready-to-run setup for the community MCP servers (Census, SEC EDGAR, FRED, OpenStreetMap, Tavily, Exa, Firecrawl, Google Maps, Alpha Vantage). Every run command is verified from each project's README.
+```bash
+cp config/.env.example config/.env     # paste in whatever keys you have
+bash config/setup.sh                    # wires up only what your keys + runtimes allow; backs up your config
+```
+`config/CONFIG-GUIDE.md` has the exact steps, per-server nuance, and the two clone-and-build servers. `config/bristol-defaults.md` holds Bristol's tuned defaults (markets, comp radius, FRED series, Census variables). First-party connectors stay one-click: **Connect → log in on the popup → done.**
+
 ## What's in this repo
 ```
 START-HERE.md            ← the installer Claude reads and executes
