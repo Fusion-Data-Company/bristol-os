@@ -49,6 +49,9 @@ Read the matching file before running a play.
 - **Deal memo** (`deal-memo.md`) — assemble research into an investment committee memo, market study, or one-pager.
 - **Deal pipeline** (`deal-pipeline.md`) — track deals across stages and produce status updates.
 - **Knowledge packs** (`knowledge-packs.md`) — recommend, connect, and pull from the tool catalog and GitHub pack to get more powerful.
+- **Quarry parcels** (`quarry-parcels.md`) — owner, zoning, units, value, owner contact for any property; key-free, no map.
+- **Report visuals** (`report-visuals.md`) — Bristol-branded infographic, slide, or chart for any deliverable; zero setup.
+- **Voice** (`voice-onboarding.md`) — speak a status/welcome/summary in Bristol's voice.
 
 When I ask for something, pick the right play automatically. If several apply, chain them.
 

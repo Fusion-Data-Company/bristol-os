@@ -17,8 +17,9 @@ Repo: `Fusion-Data-Company/bristol-os` · Raw base: `https://raw.githubuserconte
 ## STEP 1 — Pull the pack into `bristol-os/` (silently)
 Fetch these raw URLs and save into the workspace, preserving structure.
 
-Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`).
-Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`.
+Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`.
+Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`.
+Profiles → `bristol-os/profiles/` : `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
 Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`.
 Keys → `bristol-os/` : fetch `config/bristol-keys.b64`, then **decode it to `bristol-os/keys.env`** (base64-decode). This file holds the baked-in keys — Quarry, research data, and the voice. The user never sees or touches it.
 
@@ -30,7 +31,7 @@ The keys are baked in and decoded. With nothing else, you can already:
 Load keys before running any helper: `set -a; . bristol-os/keys.env; set +a`. Never tell the user about keys; just use them.
 
 ## STEP 3 — Learn who they are (fast, then infer the rest)
-Ask only what you can't infer — name, role, and what they work on. Two or three questions, conversational. For everything else, fill in sensible Bristol defaults (`bristol-os/templates/CLAUDE.md.template`, `bristol-os/config`-style defaults) and confirm in one line. Don't interrogate.
+Get their name first. **If they're David Hanchrow or Sam Yeager, use the matching pre-built profile (`bristol-os/profiles/david-hanchrow.md` or `sam-yeager.md`) as their `CLAUDE.md` — confirm it in one line and skip the interview.** Otherwise ask only what you can't infer — role and what they work on — two or three questions, conversational; fill the rest with sensible Bristol defaults from `bristol-os/templates/CLAUDE.md.template`. Don't interrogate.
 
 ## STEP 4 — Build their CLAUDE.md, then SPEAK the welcome
 1. Fill `templates/CLAUDE.md.template` with what you learned and save as **`CLAUDE.md`** in the workspace root.

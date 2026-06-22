@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" font-family="Helvetica, Arial, sans-serif">
+  <!-- Bristol OS deal-snapshot infographic. Claude: replace {{...}} with real, sourced figures. 16:9 so it doubles as a slide. -->
+  <rect width="1200" height="675" fill="#f4f1ea"/>
+  <rect width="1200" height="120" fill="#0f2233"/>
+  <rect y="120" width="1200" height="6" fill="#c8a14a"/>
+  <text x="56" y="56" fill="#ffffff" font-size="30" font-weight="700" letter-spacing="1">BRISTOL DEVELOPMENT GROUP</text>
+  <text x="56" y="94" fill="#c8a14a" font-size="20" font-weight="600">{{DEAL_NAME}} — Deal Snapshot</text>
+  <text x="1144" y="74" text-anchor="end" fill="#9fb2c2" font-size="16">{{LOCATION}}</text>
+
+  <!-- stat blocks -->
+  <g>
+    <rect x="56"  y="170" width="258" height="150" rx="12" fill="#ffffff" stroke="#e3ddcf"/>
+    <rect x="330" y="170" width="258" height="150" rx="12" fill="#ffffff" stroke="#e3ddcf"/>
+    <rect x="604" y="170" width="258" height="150" rx="12" fill="#ffffff" stroke="#e3ddcf"/>
+    <rect x="878" y="170" width="266" height="150" rx="12" fill="#ffffff" stroke="#e3ddcf"/>
+
+    <text x="80"  y="212" fill="#5d6b76" font-size="16">UNITS</text>
+    <text x="80"  y="270" fill="#0f2233" font-size="46" font-weight="700">{{UNITS}}</text>
+    <text x="354" y="212" fill="#5d6b76" font-size="16">TOTAL BASIS</text>
+    <text x="354" y="270" fill="#0f2233" font-size="40" font-weight="700">{{BASIS}}</text>
+    <text x="628" y="212" fill="#5d6b76" font-size="16">YIELD-ON-COST</text>
+    <text x="628" y="270" fill="#0f2233" font-size="46" font-weight="700">{{YOC}}</text>
+    <text x="902" y="212" fill="#5d6b76" font-size="16">MKT CAP / EXIT</text>
+    <text x="902" y="270" fill="#0f2233" font-size="46" font-weight="700">{{CAP}}</text>
+  </g>
+
+  <!-- thesis / recommendation -->
+  <rect x="56" y="350" width="806" height="265" rx="12" fill="#ffffff" stroke="#e3ddcf"/>
+  <text x="80" y="392" fill="#0f2233" font-size="20" font-weight="700">The Thesis</text>
+  <text x="80" y="430" fill="#0d1b26" font-size="17">{{THESIS_LINE_1}}</text>
+  <text x="80" y="458" fill="#0d1b26" font-size="17">{{THESIS_LINE_2}}</text>
+  <text x="80" y="486" fill="#0d1b26" font-size="17">{{THESIS_LINE_3}}</text>
+  <text x="80" y="540" fill="#5d6b76" font-size="15">Supply pipeline: {{SUPPLY}}</text>
+  <text x="80" y="566" fill="#5d6b76" font-size="15">Achievable rent: {{RENT}}</text>
+
+  <!-- recommendation badge -->
+  <rect x="878" y="350" width="266" height="265" rx="12" fill="#0f2233"/>
+  <text x="1011" y="402" text-anchor="middle" fill="#c8a14a" font-size="16" letter-spacing="1">RECOMMENDATION</text>
+  <text x="1011" y="470" text-anchor="middle" fill="#ffffff" font-size="44" font-weight="700">{{REC}}</text>
+  <text x="1011" y="520" text-anchor="middle" fill="#9fb2c2" font-size="15">{{REC_SUB}}</text>
+
+  <text x="56" y="650" fill="#8a8a8a" font-size="13">Bristol OS · {{DATE}} · Figures per Bristol underwriting / sourced where noted.</text>
+</svg>
