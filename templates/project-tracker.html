@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bristol Development — Deal Tracker</title>
+<style>
+  :root{--navy:#0f2233;--navy2:#1b3a57;--gold:#c8a14a;--ink:#0d1b26;--bg:#f4f1ea;--card:#fff;--mut:#5d6b76;}
+  *{box-sizing:border-box;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  body{margin:0;background:var(--bg);color:var(--ink)}
+  header{background:var(--navy);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  header h1{font-size:18px;margin:0;letter-spacing:.3px}
+  header h1 .g{color:var(--gold)}
+  header .sub{color:#9fb2c2;font-size:12px;margin-top:2px}
+  .btn{background:var(--gold);color:#1a1a1a;border:0;border-radius:8px;padding:9px 14px;font-weight:600;cursor:pointer;font-size:13px}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid #3b566e}
+  .board{display:flex;gap:14px;padding:18px;overflow-x:auto;min-height:70vh}
+  .col{flex:0 0 240px;background:#e9e4d8;border-radius:12px;display:flex;flex-direction:column;max-height:80vh}
+  .col h2{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--navy2);margin:0;padding:12px 14px 6px;display:flex;justify-content:space-between}
+  .col h2 .n{background:var(--navy);color:#fff;border-radius:10px;padding:0 7px;font-size:11px;line-height:18px}
+  .cards{padding:8px 10px;overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+  .card{background:var(--card);border-radius:10px;padding:11px 12px;box-shadow:0 1px 3px rgba(0,0,0,.12);cursor:pointer;border-left:4px solid var(--gold)}
+  .card .nm{font-weight:700;font-size:14px}
+  .card .loc{color:var(--mut);font-size:12px;margin:2px 0 6px}
+  .card .meta{font-size:11px;color:var(--navy2)}
+  .card .next{font-size:11px;margin-top:6px;color:#7a5a12;background:#fbf3dd;border-radius:6px;padding:3px 6px;display:inline-block}
+  .empty{color:#9aa6af;font-size:12px;text-align:center;padding:14px 0}
+  dialog{border:0;border-radius:14px;padding:0;max-width:420px;width:92%}
+  .dlg{padding:20px}
+  .dlg h3{margin:0 0 12px}
+  .dlg label{display:block;font-size:12px;color:var(--mut);margin:10px 0 3px}
+  .dlg input,.dlg select,.dlg textarea{width:100%;padding:9px;border:1px solid #ccc;border-radius:8px;font-size:14px}
+  .row{display:flex;gap:18px;justify-content:flex-end;margin-top:18px;align-items:center}
+  .row .del{margin-right:auto;color:#b23b3b;background:none;border:0;cursor:pointer;font-size:13px}
+  footer{color:var(--mut);font-size:11px;padding:6px 20px 18px}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>BRISTOL DEVELOPMENT <span class="g">— Deal Tracker</span></h1><div class="sub">Live board · saved automatically on this computer</div></div>
+  <div><button class="btn" onclick="openNew()">+ Add deal</button></div>
+</header>
+<div class="board" id="board"></div>
+<footer id="foot"></footer>
+
+<dialog id="dlg"><form method="dialog" class="dlg" id="form">
+  <h3 id="dtitle">Add deal</h3>
+  <input type="hidden" id="f_id"/>
+  <label>Deal name</label><input id="f_name" required placeholder="e.g. Tapestry West II"/>
+  <label>Location</label><input id="f_loc" placeholder="Submarket / city"/>
+  <div style="display:flex;gap:10px">
+    <div style="flex:1"><label>Units</label><input id="f_units" placeholder="#"/></div>
+    <div style="flex:1.4"><label>Stage</label><select id="f_stage"></select></div>
+  </div>
+  <label>Next action</label><input id="f_next" placeholder="What's the next step?"/>
+  <label>Notes</label><textarea id="f_notes" rows="2"></textarea>
+  <div class="row">
+    <button type="button" class="del" id="delBtn" onclick="delDeal()">Delete</button>
+    <button type="button" class="btn ghost" style="color:#333;border-color:#ccc" onclick="dlg.close()">Cancel</button>
+    <button class="btn" onclick="saveDeal(event)">Save</button>
+  </div>
+</form></dialog>
+
+<script>
+const STAGES=["Sourced","Screening","Underwriting","IC / Approval","Capital Raise","Closing","Development","Lease-up","Stabilized"];
+const KEY="bristolDeals";
+const dlg=document.getElementById('dlg');
+let deals=load();
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
+function save(){localStorage.setItem(KEY,JSON.stringify(deals))}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function stageSel(){const s=document.getElementById('f_stage');s.innerHTML=STAGES.map(x=>`<option>${x}</option>`).join('')}
+function render(){
+  const b=document.getElementById('board');b.innerHTML='';
+  STAGES.forEach(st=>{
+    const items=deals.filter(d=>d.stage===st);
+    const col=document.createElement('div');col.className='col';
+    col.innerHTML=`<h2>${st}<span class="n">${items.length}</span></h2>`;
+    const c=document.createElement('div');c.className='cards';
+    if(!items.length)c.innerHTML='<div class="empty">—</div>';
+    items.forEach(d=>{
+      const el=document.createElement('div');el.className='card';el.onclick=()=>openEdit(d.id);
+      el.innerHTML=`<div class="nm">${esc(d.name)}</div><div class="loc">${esc(d.loc||'')}</div>
+        <div class="meta">${d.units?esc(d.units)+' units':''}</div>
+        ${d.next?`<div class="next">▶ ${esc(d.next)}</div>`:''}`;
+      c.appendChild(el);
+    });
+    col.appendChild(c);b.appendChild(col);
+  });
+  document.getElementById('foot').textContent=`${deals.length} deal(s) · Bristol OS`;
+}
+function esc(s){return String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function openNew(){stageSel();document.getElementById('dtitle').textContent='Add deal';document.getElementById('form').reset();document.getElementById('f_id').value='';document.getElementById('delBtn').style.display='none';dlg.showModal()}
+function openEdit(id){const d=deals.find(x=>x.id===id);if(!d)return;stageSel();document.getElementById('dtitle').textContent='Edit deal';document.getElementById('f_id').value=d.id;f_name.value=d.name;f_loc.value=d.loc||'';f_units.value=d.units||'';f_stage.value=d.stage;f_next.value=d.next||'';f_notes.value=d.notes||'';document.getElementById('delBtn').style.display='inline';dlg.showModal()}
+function saveDeal(e){e.preventDefault();const id=document.getElementById('f_id').value;const o={id:id||uid(),name:f_name.value.trim(),loc:f_loc.value.trim(),units:f_units.value.trim(),stage:f_stage.value,next:f_next.value.trim(),notes:f_notes.value.trim()};if(!o.name)return;if(id){deals=deals.map(d=>d.id===id?o:d)}else{deals.push(o)}save();render();dlg.close()}
+function delDeal(){const id=document.getElementById('f_id').value;if(id&&confirm('Delete this deal?')){deals=deals.filter(d=>d.id!==id);save();render();dlg.close()}}
+if(!deals.length){deals=[{id:uid(),name:"Sample: Franklin TN site",loc:"Williamson County",units:"260",stage:"Screening",next:"Pull parcel owner + market read",notes:"Delete me — your real deals go here."}];save()}
+render();
+</script>
+</body>
+</html>

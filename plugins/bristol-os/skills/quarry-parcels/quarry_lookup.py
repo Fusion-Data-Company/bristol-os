@@ -18,16 +18,17 @@ Skip-trace (owner phone/email — charges 1 Quarry credit per trace):
 """
 import os, sys, json, time, argparse, urllib.parse, urllib.request
 
-BASE = (os.environ.get("QUARRY_BASE_URL") or "").rstrip("/")
-KEY = os.environ.get("QUARRY_API_KEY") or ""
+# Base URL is baked in (defaults to the live Bristol Quarry). Parcel lookups need NO key.
+BASE = (os.environ.get("QUARRY_BASE_URL") or "https://quarry-rose.vercel.app").rstrip("/")
+KEY = os.environ.get("QUARRY_API_KEY") or ""  # optional; only used if present (e.g. for skip-trace)
 
 
 def _req(method, path, body=None):
-    if not BASE or not KEY:
-        sys.exit("Quarry not configured: set QUARRY_BASE_URL and QUARRY_API_KEY (baked into Bristol OS keys).")
     data = json.dumps(body).encode() if body is not None else None
-    req = urllib.request.Request(BASE + path, data=data, method=method,
-        headers={"Authorization": f"Bearer {KEY}", "Accept": "application/json", "Content-Type": "application/json"})
+    headers = {"Accept": "application/json", "Content-Type": "application/json"}
+    if KEY:
+        headers["Authorization"] = f"Bearer {KEY}"
+    req = urllib.request.Request(BASE + path, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             return r.status, json.load(r)

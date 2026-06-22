@@ -1,44 +1,41 @@
 ---
 name: quarry-parcels
-description: Bristol's own Quarry engine — parcel data AND skip-trace. Look up a parcel (owner, mailing address, absentee flag, zoning, units, year built, sqft, acreage, value) and skip-trace the owner for a current phone and email. Use when the user asks "who owns this," "pull the parcel," "get me the owner's number/contact," "skip-trace this owner," "trace everyone on this block," or wants owner contact for acquisition outreach.
+description: Get parcel data on any property — owner, mailing address, absentee flag, zoning, units, year built, sqft, acreage, and value — from Bristol's Quarry engine. This is the default way to answer ANY "who owns this," "pull the parcel," "what's the zoning," "what's it worth," or property-owner question. No map, no key, no paid service — just the data, returned and dropped into the one-pager.
 ---
 
-# Quarry — Parcels + Skip-Trace
+# Quarry — Parcel Data
 
-Bristol's parcel intelligence engine (22.8M-parcel corpus + Regrid click-to-identify + skip-trace orchestrator). Turns an address, a point, an APN, or a map area into the owner, the property facts, and a contactable phone + email.
+Bristol's own parcel engine. When anyone asks about a property, **this is where the answer comes from** — not a paid lookup site, not a map they have to click. Claude queries it and returns the facts.
 
-## Config (baked into Bristol OS keys — no pasting)
-- `QUARRY_BASE_URL` — Quarry API base (e.g. `https://quarry.fusiondataco.com`)
-- `QUARRY_API_KEY` — Quarry API key (`qk_...`)
-Loaded automatically from the Bristol OS keys file. Claude runs the helper; the user types nothing.
+## HARD LAW
+If they ask for parcel data, **just get it and give it to them.** Don't open a map, don't explain how, don't ask them to do anything. Run the query, read back the answer, and put it in the one-pager/deal folder.
 
-## 1) Parcel lookup (no credits)
-Returns owner name(s), situs address, **mailing address + absentee-owner flag**, county/state, APN, acreage, lot sqft, **use & zoning**, year built, building sqft, **units**, stories, beds/baths, **valuation**.
+## How (Claude runs this; user does nothing, no key needed)
 ```bash
+# by address (auto-geocodes, free)
 python bristol-os/skills/quarry-parcels/quarry_lookup.py --address "381 Mallory Station Rd, Franklin TN"
-python bristol-os/skills/quarry-parcels/quarry_lookup.py --lat 35.93 --lng -86.84
+# by coordinates
+python bristol-os/skills/quarry-parcels/quarry_lookup.py --lat 36.16 --lng -86.78
+# everything in a map area (returns a list — no map shown)
 python bristol-os/skills/quarry-parcels/quarry_lookup.py --bbox "-86.90,35.90,-86.80,35.97" --limit 200
 ```
+The base URL is baked in; **parcel lookups need no key and cost nothing.** It returns JSON — owner, mailing address, absentee flag, county, APN, acreage, lot sqft, zoning, year built, building sqft, units, and value.
 
-## 2) Skip-trace (owner phone + email — charges 1 Quarry credit per trace)
-Resolves the owner (from APN, name, address, or a dropped pin), then returns up to **2 ranked phones + 2 ranked emails** with confidence.
+## What to do with the result
+- Read it back in plain English ("This parcel is owned by 616 Church LLC — an absentee owner mailing to Cleveland, OH; 0.09 acres, zoned Downtown Code, appraised at $X").
+- **Drop it straight into the site one-pager** (`bristol-os/templates/site-one-pager.md`) owner/zoning/value fields, and save to the deal folder.
+- Cite "Quarry" + the date.
+- If it returns null, say the parcel wasn't found — never invent it.
+
+## Owner contact (skip-trace, optional)
+Quarry can also return the owner's phone/email. Run with `--skiptrace`:
 ```bash
 python bristol-os/skills/quarry-parcels/quarry_lookup.py --skiptrace --address "123 Main St, Nashville TN"
-python bristol-os/skills/quarry-parcels/quarry_lookup.py --skiptrace --name "Jane Owner" --state TN
 python bristol-os/skills/quarry-parcels/quarry_lookup.py --skiptrace --apn 0123456789
 ```
-For a block/area: pull parcels with `--bbox` first, confirm with the user, then trace the ones they pick (the engine also supports bulk up to 25).
+Returns up to 2 phones + 2 emails with confidence. This draws on Bristol's Quarry account.
 
-## How Quarry behaves
-- Skip-trace returns up to 2 ranked phones + 2 ranked emails with confidence; each trace uses one Quarry credit.
-- A trace can take a minute — it may return `running` with a job id and finish on a follow-up poll (the helper handles this).
-
-## How it feeds the other plays
-- **site-selection:** owner, zoning, units, acreage, value for a candidate parcel → site one-pager.
-- **investor-sourcing / owner outreach:** owner of record + mailing address + skip-traced phone/email = a ready contact for an acquisition approach.
-- **market-comp-analysis:** `--bbox` to inventory nearby parcels (use, units, vintage).
-
-## Output handling
-- Read results back in plain English; save to the deal folder; cite "Quarry" + the date pulled.
-- If a lookup/trace returns null/no-hit, say so — never invent an owner, number, or email.
-- If `QUARRY_BASE_URL`/`QUARRY_API_KEY` aren't set, tell the user Quarry isn't connected yet (Rob: make the API reachable + drop in a key).
+## Feeds
+- **site-selection / one-pager:** owner, zoning, units, acreage, value.
+- **investor-sourcing / owner outreach:** owner + mailing address (+ contact via `--skiptrace`).
+- **market-comp-analysis:** `--bbox` to inventory nearby parcels.

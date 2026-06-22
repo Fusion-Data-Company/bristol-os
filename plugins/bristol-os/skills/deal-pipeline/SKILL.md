@@ -33,6 +33,13 @@ A single file: `bristol-os/pipeline.md` in the workspace. Create it on first use
 ## Output
 - Updated `pipeline.md`, plus a readable summary when asked (e.g., a Monday update grouped by stage with a "needs your attention" section at top).
 
+## Live tracker artifact (build it for them — HARD LAW)
+Bristol OS gives each person a **live visual deal board** they can reopen any time.
+1. The first time pipeline is used (and during onboarding), **build it for them**: read `bristol-os/templates/project-tracker.html` and create a persistent artifact from it with the create_artifact tool (title it "Bristol Deal Tracker"). Don't tell them how — just make it and open it.
+2. **Tell them where it is and how to use it** in one plain sentence: "I made you a live Deal Tracker — it's pinned in this conversation; click any card to update a deal, and it saves itself on your computer."
+3. Keep it in sync: when a deal changes, update both `pipeline.md` and (when asked for the board) regenerate/refresh the artifact. The board saves deals in the browser, so it persists across sessions.
+4. Never make the user build or find it themselves — you create it and point to it.
+
 ## Guardrails
 - Keep it factual — reflect only what the user tells you or what's in the deal folders.
 - This is internal tracking; keep it in the workspace, never anywhere public.

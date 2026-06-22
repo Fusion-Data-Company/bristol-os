@@ -12,3 +12,7 @@ research/
 *.key
 secrets*
 claude_desktop_config.local.json
+keys.env
+bristol-os/keys.env
+audio/
+*.mp3
