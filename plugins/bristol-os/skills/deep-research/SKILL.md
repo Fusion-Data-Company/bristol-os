@@ -11,11 +11,10 @@ Turn a plain-language question into a thorough, source-cited briefing. This is t
 The user wants more than a quick answer: "research the Nashville multifamily market," "what's happening with construction costs," "look into this developer," "find everything on this incentive program."
 
 ## Tools, in order of preference
-1. **Tavily / Exa connectors** if connected (`tavily_research`, `tavily_search`, `web_search_exa`) — deepest, cleanest.
-2. **Claude's built-in web search** — always available, the zero-setup default.
-3. **Yardi Matrix / finance connectors** if the question is real estate or market data and they're connected.
-4. The bundled `deep-research` skill if present in the user's Claude.
-If only built-in search is available, still do the full method below — just rely on web search.
+1. **Baked-in research keys (always available, no setup):** load `bristol-os/keys.env` and call **Tavily**, **Exa**, and **Firecrawl** directly — exact commands in `bristol-os/docs/DATA-SOURCES.md`. Also **FRED**/**Census** for macro & demographic facts, and **Quarry** (`quarry-parcels`) for property/owner facts.
+2. **Claude's built-in web search** — always available.
+3. **Yardi Matrix / finance connectors** if connected (real estate / market data).
+Run the full method below regardless of which tools fire.
 
 ## Method
 1. **Clarify the decision.** One sharp question if scope is unclear: what decision will this inform, and how deep do they need it? Then proceed.

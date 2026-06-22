@@ -32,3 +32,15 @@ _Updated 2026-06-22 · repo: github.com/Fusion-Data-Company/bristol-os (public)_
 - **Unlimited skip-trace credits: not wired** (optional; one DB action when you want it).
 
 **Bottom line: it's ready to hand to Sam or David for the first run today.** The only thing between "works in my tests" and "running in the office" is one person pasting the command on their machine — which I've written the full walkthrough for (`WALKTHROUGH.md`).
+
+---
+
+## Gap analysis — full end-to-end dry-run (2026-06-22)
+Ran the install the way a user's machine will, against the live repo:
+- **All 28 files the installer pulls resolve** (0 missing / 404).
+- **Baked keys decode and source cleanly.** (Found & fixed a bug: the SEC user-agent line had unquoted parentheses that broke shell sourcing — now every value is quoted.)
+- **Every data source fired with the decoded keys:** Quarry parcels ✅, FRED ✅ (30-yr mortgage 6.47%), Census ✅ (TN median income $64,035), Tavily ✅, Exa ✅, Firecrawl ✅, ElevenLabs voice ✅.
+- **Added `docs/DATA-SOURCES.md`** — exact, tested call patterns — and pointed the research skills + CLAUDE.md at it so Claude actually uses the baked keys.
+- Minor: Alpha Vantage free tier rate-limits (~25 calls/day) — key is valid; Claude falls back to web/Tavily when limited.
+
+**Closed by this pass:** every required, in-our-control item is built, wired, and verified. **Still open = optional or out-of-our-hands:** unlimited skip-trace credits (needs Quarry DB, optional), Yardi/paid connectors (optional), Canva branded designs (optional per-user login), and the one thing only a Bristol person can do — paste the command on their own machine for the first real run.

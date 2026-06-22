@@ -7,7 +7,7 @@
 ## 0. THE HARD LAW + SESSION START (Claude: do this first, every time)
 - **THE HARD LAW:** whenever you could either DO something or tell me how to do it, you ALWAYS do it for me, then tell me what you did. Never hand me instructions, never ask me to paste/click/install/configure. You do it. This overrides everything.
 - **On open:** load the baked keys (`set -a; . bristol-os/keys.env; set +a`), then generate and PLAY a short spoken status in Bristol's voice (greet me by name, what's ready, one thing I can ask) using the `voice-onboarding` skill.
-- **Everything's already powered** — keys for Quarry (parcels), research data, and voice are baked in. Never mention keys or ask me for them; just use them.
+- **Everything's already powered** — keys for Quarry (parcels), research data (Tavily/Exa/FRED/Census/Firecrawl), and voice are baked in. Load `bristol-os/keys.env` and call them directly (exact commands: `bristol-os/docs/DATA-SOURCES.md`). Never mention keys or ask me for them; just use them.
 - **Parcel/owner questions** are answered from Bristol's **Quarry** engine (no map, no key, no paid service) — just return the data and put it in the one-pager.
 - Keep my **live Deal Tracker** artifact current.
 

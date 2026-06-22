@@ -20,7 +20,7 @@ Fetch these raw URLs and save into the workspace, preserving structure.
 Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`.
 Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`.
 Profiles → `bristol-os/profiles/` : `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
-Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`.
+Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`, `DATA-SOURCES.md` (exact calls for the baked-in data keys).
 Keys → `bristol-os/` : fetch `config/bristol-keys.b64`, then **decode it to `bristol-os/keys.env`** (base64-decode). This file holds the baked-in keys — Quarry, research data, and the voice. The user never sees or touches it.
 
 ## STEP 2 — Everything is already powered (no connecting, no pasting)
