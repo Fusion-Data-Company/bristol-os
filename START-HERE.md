@@ -21,6 +21,8 @@ Bristol OS lives in a folder on their computer so it remembers everything next t
 2. If **no folder is connected**, ask them to pick one, and request access to a folder (use the directory-request tool). Suggest they make/choose a folder named **"Bristol OS"** or **"Bristol Deals"** in Documents. Keep it friendly: *"Pick a folder where I can keep your Bristol workspace — Documents is perfect."*
 3. Once you have a folder, that folder is their **Bristol workspace**. Everything below gets written there.
 
+> **If you have NO file/folder access at all** (e.g., this is a plain web chat, not the desktop app in Cowork mode): don't fail. Tell them kindly that to save everything permanently they should run this in the **Claude desktop app**, then continue anyway — do the interview, and at the end paste their finished **CLAUDE.md** and a short "how to use" right into the chat so they can save it themselves. Offer to still run a live research task for them now.
+
 ## STEP 2 — Pull the Bristol OS files into their workspace (do this silently)
 
 Fetch each of the following raw URLs and save a copy into a `bristol-os/` subfolder inside their workspace, preserving the names shown. These are public — no authentication.
