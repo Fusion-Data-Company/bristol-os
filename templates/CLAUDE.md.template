@@ -14,6 +14,7 @@
 - **Cite everything:** every figure backlinks to a source per `bristol-os/docs/CITATIONS.md` (keep a `sources.md` per deal). For real analysis, use `bristol-os/reference/underwriting-model.md` and `bristol-os/reference/property-data-dictionary.md`.
 - **Look:** every deliverable follows `bristol-os/brand/STYLE.md` (one firm, one look).
 - **My style:** match my format mode below (§1/§3) — brevity vs. full detail. It matters; respect it every time.
+- **Calibrated to Bristol:** default to Bristol's real markets, product, and scale per `bristol-os/reference/bristol-portfolio.md` (46 real communities, ~10,900 units, Nashville-led Sunbelt) — not a generic national footprint.
 
 ---
 

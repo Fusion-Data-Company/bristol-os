@@ -21,7 +21,7 @@ Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL
 Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`, `intake-record.md`, `sources.md` (deal sources registry).
 Profiles → `bristol-os/profiles/` : `profiles/roster.md`, `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
 Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`, `DATA-SOURCES.md`, `CITATIONS.md` (cite-everything standard).
-Reference → `bristol-os/reference/` : `underwriting-model.md`, `property-data-dictionary.md` (institutional depth Claude reads before analysis).
+Reference → `bristol-os/reference/` : `underwriting-model.md`, `property-data-dictionary.md` (institutional depth Claude reads before analysis), `bristol-portfolio.md` (Bristol's real 46-community portfolio — calibrates markets, product, scale).
 Brand → `bristol-os/brand/` : `STYLE.md` (look of every deliverable).
 Memory → `bristol-os/memory/` : `README.md` (then create the person's record + `INDEX.md` here in Step 4).
 Keys → `bristol-os/` : fetch `config/bristol-keys.b64`, then **decode it to `bristol-os/keys.env`** (base64-decode). This file holds the baked-in keys — Quarry, research data, and the voice. The user never sees or touches it.
