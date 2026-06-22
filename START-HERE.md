@@ -35,6 +35,11 @@ Fetch each of the following raw URLs and save a copy into a `bristol-os/` subfol
 - `plugins/bristol-os/skills/underwriting-research/SKILL.md` → `bristol-os/skills/underwriting-research.md`
 - `plugins/bristol-os/skills/deal-memo/SKILL.md` → `bristol-os/skills/deal-memo.md`
 - `plugins/bristol-os/skills/deal-pipeline/SKILL.md` → `bristol-os/skills/deal-pipeline.md`
+- `plugins/bristol-os/skills/knowledge-packs/SKILL.md` → `bristol-os/skills/knowledge-packs.md`
+
+**Tool catalog & GitHub pack** → save into `bristol-os/catalog/`
+- `catalog/TOOL-CATALOG.md` → `bristol-os/catalog/TOOL-CATALOG.md`
+- `catalog/GITHUB-PACK.md` → `bristol-os/catalog/GITHUB-PACK.md`
 
 **Templates** → save into `bristol-os/templates/`
 - `templates/investment-memo.md`
@@ -75,12 +80,17 @@ This file is what makes every future session smart. After saving it, **explain i
 
 Bristol OS works **right now** with the web search built into Claude — no accounts, no subscriptions. Tell them that first so they feel finished.
 
-Then offer the upgrades from `onboarding/connector-setup.md`, in plain English, as a "want even deeper research?" option. Only walk them through one if they say yes:
-- **Tavily** and **Exa** — deeper, source-cited web research (free tier).
-- **Apollo / Lusha / Harmonic / CB Insights** — investor and business-contact research.
-- **Yardi Matrix** — professional multifamily market data (only if Bristol subscribes).
+The full menu of tools lives in `bristol-os/catalog/TOOL-CATALOG.md` (connectors) and `bristol-os/catalog/GITHUB-PACK.md` (open-source repos). **Match the person to the right path:**
 
-For each one they want, give the click-by-click in `connector-setup.md`. If they don't want any now, tell them they (or you) can add them later anytime.
+- **Basic user (most people — Sam, David, staff):** only offer Tier 0 + one-click first-party connectors. In plain English, as a "want even deeper research?" option, walk them through at most one or two if they say yes:
+  - **Tavily** and **Exa** — deeper, source-cited web research (free tier).
+  - **Google Drive / Gmail / Calendar** — if Bristol uses Google Workspace.
+  - **Yardi Matrix** — professional multifamily market data (only if Bristol subscribes).
+  - **Apollo / CB Insights** — investor & business-contact research, when a raise is active.
+  Use the click-by-click in `onboarding/connector-setup.md`. NEVER ask a basic user to install a GitHub MCP server.
+- **Technical user (Rob, or a helper):** also offer the **"full real estate power setup"** from `GITHUB-PACK.md` — free community MCP servers (Census, SEC EDGAR, FRED, OpenStreetMap) plus Firecrawl/Omnisearch. Point them to the repo READMEs.
+
+For each connector they add, update the `CLAUDE.md` "connected tools" line. If they don't want any now, tell them they (or you) can add them later anytime — just say "make me more powerful."
 
 ## STEP 6 — Teach what they now have (briefly)
 
@@ -92,6 +102,7 @@ Walk them through `bristol-os/docs/what-each-tool-does.md` at a high level: the 
 - *"Turn this into an investment committee memo"* → deal memo
 - *"Track my deals"* → deal pipeline
 - *"Go deep on any topic with sources"* → deep research
+- *"Make me more powerful / add tools"* → knowledge packs (recommends & sets up connectors and repos)
 
 ## STEP 7 — Do ONE real task live (prove the magic)
 

@@ -30,12 +30,20 @@ There is nothing to download, no account to create, and no code to run. The free
 - It follows **Fair Housing** and **data-ethics** rules automatically (no consumer skip-tracing; public records + licensed business data only).
 - It informs decisions; it doesn't give legal, tax, securities, or investment advice.
 
+## Tools & repos it can pull in
+Bristol OS ships a fully-configured **tool catalog** and a **verified GitHub pack**:
+- `catalog/TOOL-CATALOG.md` — every recommended connector (research, real estate, finance, investor/owner, docs, CRM, PM), tiered into *zero-cost defaults* vs *paid power-ups*, each mapped to the play it powers.
+- `catalog/GITHUB-PACK.md` — ~30 verified public repos (Anthropic skills, MCP directories, real-estate/Census/SEC/FRED/Maps MCP servers, doc generators). Every repo confirmed live via the GitHub API with real star counts; archived ones flagged.
+
+Two paths, on purpose: **basic users** get one-click first-party connectors only; **Rob / a technical helper** gets the full open-source power setup. Nobody non-technical is ever asked to touch a command line.
+
 ## What's in this repo
 ```
 START-HERE.md            ← the installer Claude reads and executes
 templates/CLAUDE.md.template
 onboarding/              ← interview + connector setup + tool guide
-plugins/bristol-os/skills/   ← the 7 research plays
+catalog/                 ← TOOL-CATALOG.md + GITHUB-PACK.md
+plugins/bristol-os/skills/   ← 8 plays (7 research + knowledge-packs)
 templates/               ← memo, market study, one-pager, folder structure
 docs/                    ← "what is a CLAUDE.md", how-to, ethics & Fair Housing
 .claude-plugin/marketplace.json  ← optional, for Claude Code users
