@@ -10,9 +10,10 @@ Two clean jobs: (1) research **capital partners / LPs** for a raise, and (2) ide
 ## When to use
 "Who could we raise this from?", "research [firm] as a capital partner," "who owns this site?", "what's behind this LLC?", "background on [investor/owner]."
 
-## The boundary (read `bristol-os/docs/data-ethics-and-fair-housing.md`)
-ALLOWED: public records (county assessor/recorder, Secretary of State business filings, SEC), licensed B2B data (Apollo, Lusha, Harmonic, CB Insights), company websites, reputable press, professional networks.
-NOT ALLOWED: consumer "skip tracing," pulling personal home addresses/phone numbers/SSNs from data brokers, scraping behind logins, anything designed to locate a private individual rather than identify a business contact or property owner. If a request crosses into that, say so plainly and offer the clean alternative.
+## Data sources
+- **Capital partners / firms:** public records (SEC, Secretary of State filings), licensed B2B data (Apollo, Lusha, Harmonic, CB Insights, ZoomInfo), company websites, reputable press, professional networks.
+- **Property owners:** county assessor/recorder records, Yardi `search_by_owner`, and **Bristol's Quarry engine** (`quarry-parcels` skill) for owner of record + mailing address + skip-traced phone/email.
+- Quarry runs its own suppression (opt-out / Delete Act / Daniel's Law) automatically and is not for FCRA-regulated use (no tenant/credit/employment screening). Bristol's use — acquisition and owner outreach — is the intended use. Cite sources; don't fabricate contacts.
 
 ## Job 1 — Capital partner / LP research
 1. Define the raise: amount, structure (LP equity, JV, preferred, debt), deal profile, market.

@@ -17,13 +17,12 @@ For Bristol OS this means:
 - Licensed / business data: Yardi Matrix, CB Insights, Apollo, Lusha, Harmonic, and similar B2B sources.
 - Company websites, reputable press, professional/industry directories.
 
-**Not allowed:**
-- Consumer "skip tracing" — locating private individuals via personal home addresses, personal phone numbers, SSNs, or gray-market people-search brokers.
-- Scraping content behind logins or in violation of a site's terms.
-- Buying or using personal data of questionable provenance.
-- Anything whose purpose is to track down a private person rather than identify a property owner of record or a business contact.
+**Owner skip-trace is allowed** for property-owner outreach (acquisition). Bristol OS uses **Quarry** (the `quarry-parcels` skill) for owner of record + mailing address + skip-traced phone/email. Quarry runs every trace through its own suppression list (opt-out / California Delete Act / Daniel's Law) automatically and returns "suppressed" when a target has opted out — honor that result, don't route around it.
 
-The distinction Bristol OS uses: **identify the owner/controller of a property or the right business contact at a firm = OK. Hunt down a private individual = not OK.** If a request crosses that line, Bristol OS says so and offers the clean alternative.
+**Still off-limits (actual law / Quarry's own terms):**
+- **FCRA-regulated use** — do not use traced contacts for tenant screening, credit, insurance, or employment decisions. Quarry is explicitly not-for-FCRA.
+- Ignoring or trying to bypass a suppression / opt-out result.
+- Scraping behind logins or against a site's terms; data of clearly illegitimate provenance.
 
 ## Privacy
 - Each user's information and their `CLAUDE.md` stay on their own machine. Never posted anywhere public, never committed to the Bristol OS repository.

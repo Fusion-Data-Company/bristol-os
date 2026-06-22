@@ -1,44 +1,57 @@
 #!/usr/bin/env python3
 """
-Quarry parcel lookup for Bristol OS.
-Pulls parcel data (owner, address, zoning, units, year built, value, absentee flag)
-from Rob's Quarry engine. PARCEL DATA ONLY — no skip-trace.
+Quarry lookup for Bristol OS — parcels + skip-trace, on Bristol's own Quarry engine.
 
 Reads from environment (baked into the Bristol OS keys file):
   QUARRY_BASE_URL   e.g. https://quarry.fusiondataco.com   (no trailing slash)
   QUARRY_API_KEY    a Quarry API key (qk_...)
 
-Usage:
+Parcel data (free of credits):
   python quarry_lookup.py --address "381 Mallory Station Rd, Franklin TN"
   python quarry_lookup.py --lat 35.93 --lng -86.84
   python quarry_lookup.py --bbox minLng,minLat,maxLng,maxLat [--limit 100]
+
+Skip-trace (owner phone/email — charges 1 Quarry credit per trace):
+  python quarry_lookup.py --skiptrace --address "123 Main St, Nashville TN"
+  python quarry_lookup.py --skiptrace --name "John Smith" --state TN
+  python quarry_lookup.py --skiptrace --apn 0123456789
 """
-import os, sys, json, argparse, urllib.parse, urllib.request
+import os, sys, json, time, argparse, urllib.parse, urllib.request
 
 BASE = (os.environ.get("QUARRY_BASE_URL") or "").rstrip("/")
 KEY = os.environ.get("QUARRY_API_KEY") or ""
 
 
-def _get(path):
+def _req(method, path, body=None):
     if not BASE or not KEY:
         sys.exit("Quarry not configured: set QUARRY_BASE_URL and QUARRY_API_KEY (baked into Bristol OS keys).")
-    req = urllib.request.Request(BASE + path, headers={"Authorization": f"Bearer {KEY}", "Accept": "application/json"})
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(BASE + path, data=data, method=method,
+        headers={"Authorization": f"Bearer {KEY}", "Accept": "application/json", "Content-Type": "application/json"})
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=60) as r:
             return r.status, json.load(r)
     except urllib.error.HTTPError as e:
-        body = e.read().decode()[:300]
+        try:
+            payload = json.loads(e.read().decode())
+        except Exception:
+            payload = {"error": f"http_{e.code}"}
         if e.code == 401:
-            sys.exit("Quarry auth failed (401): the QUARRY_API_KEY is invalid or revoked.")
+            sys.exit("Quarry auth failed (401): QUARRY_API_KEY invalid or revoked.")
+        if e.code == 402:
+            sys.exit("Quarry: insufficient credits for skip-trace. Top up the Quarry account.")
+        if e.code == 451:
+            return 451, payload  # suppressed — surface reasons, no charge
+        if e.code == 503:
+            sys.exit("Quarry skip-trace engine is unreachable right now (no charge). Try later.")
         if e.code == 404:
-            return 404, {"parcel": None}
-        sys.exit(f"Quarry error {e.code}: {body}")
+            return 404, payload
+        sys.exit(f"Quarry error {e.code}: {json.dumps(payload)[:300]}")
     except Exception as e:
-        sys.exit(f"Could not reach Quarry at {BASE} ({e}). Is the API public / URL correct?")
+        sys.exit(f"Could not reach Quarry at {BASE} ({e}). Is the API public and the URL correct?")
 
 
 def geocode(address):
-    """Free geocode via OpenStreetMap Nominatim (no key)."""
     url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
         {"q": address, "format": "json", "limit": 1})
     req = urllib.request.Request(url, headers={"User-Agent": "BristolOS/1.0 (parcel lookup)"})
@@ -49,37 +62,62 @@ def geocode(address):
     return float(data[0]["lat"]), float(data[0]["lon"])
 
 
+def parcel(args):
+    if args.bbox:
+        mnLng, mnLat, mxLng, mxLat = [float(x) for x in args.bbox.split(",")]
+        q = urllib.parse.urlencode({"minLng": mnLng, "minLat": mnLat, "maxLng": mxLng,
+                                    "maxLat": mxLat, "limit": args.limit})
+        return _req("GET", f"/api/parcels/bbox?{q}")[1]
+    lat, lng = args.lat, args.lng
+    if lat is None or lng is None:
+        if not args.address:
+            sys.exit("Provide --address, --lat/--lng, or --bbox.")
+        lat, lng = geocode(args.address)
+        print(f"# geocoded '{args.address}' -> {lat},{lng}", file=sys.stderr)
+    _, out = _req("GET", f"/api/parcels/at?{urllib.parse.urlencode({'lat': lat, 'lng': lng, 'zoom': args.zoom})}")
+    if not out.get("parcel"):
+        _, out = _req("GET", f"/api/parcels/point?{urllib.parse.urlencode({'lat': lat, 'lng': lng})}")
+    return out
+
+
+def skiptrace(args):
+    body = {}
+    for k in ("apn", "name", "company", "city", "state", "address"):
+        v = getattr(args, k, None)
+        if v:
+            body[k] = v
+    if args.lat is not None and args.lng is not None:
+        body["lat"], body["lng"] = args.lat, args.lng
+    if args.address and not (args.lat or args.name or args.apn):
+        body["lat"], body["lng"] = geocode(args.address)
+        print(f"# geocoded '{args.address}' -> {body['lat']},{body['lng']}", file=sys.stderr)
+    if not (body.get("apn") or body.get("name") or body.get("company") or ("lat" in body)):
+        sys.exit("Skip-trace needs --apn, --name/--company, --address, or --lat/--lng.")
+    status, out = _req("POST", "/api/skiptrace", body)
+    if status == 451:
+        return {"status": "suppressed", "reasons": out.get("reasons")}
+    # async: poll status until done
+    job = out.get("jobId") or out.get("job")
+    if out.get("status") == "running" and job:
+        for _ in range(20):
+            time.sleep(3)
+            _, st = _req("GET", f"/api/skiptrace/status?{urllib.parse.urlencode({'job': job})}")
+            if st.get("status") != "running":
+                return st
+        return {"status": "running", "jobId": job, "note": "still running; poll later"}
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--address")
-    ap.add_argument("--lat", type=float)
-    ap.add_argument("--lng", type=float)
-    ap.add_argument("--bbox", help="minLng,minLat,maxLng,maxLat")
-    ap.add_argument("--limit", type=int, default=100)
+    ap.add_argument("--skiptrace", action="store_true", help="owner phone/email (charges 1 credit)")
+    ap.add_argument("--address"); ap.add_argument("--apn"); ap.add_argument("--name")
+    ap.add_argument("--company"); ap.add_argument("--city"); ap.add_argument("--state")
+    ap.add_argument("--lat", type=float); ap.add_argument("--lng", type=float)
+    ap.add_argument("--bbox"); ap.add_argument("--limit", type=int, default=100)
     ap.add_argument("--zoom", type=int, default=17)
     a = ap.parse_args()
-
-    if a.bbox:
-        mnLng, mnLat, mxLng, mxLat = [float(x) for x in a.bbox.split(",")]
-        q = urllib.parse.urlencode({"minLng": mnLng, "minLat": mnLat, "maxLng": mxLng,
-                                    "maxLat": mxLat, "limit": a.limit})
-        _, out = _get(f"/api/parcels/bbox?{q}")
-        print(json.dumps(out, indent=2)); return
-
-    lat, lng = (a.lat, a.lng)
-    if lat is None or lng is None:
-        if not a.address:
-            sys.exit("Provide --address, or --lat and --lng, or --bbox.")
-        lat, lng = geocode(a.address)
-        print(f"# geocoded '{a.address}' -> {lat},{lng}", file=sys.stderr)
-
-    # /api/parcels/at returns the rich record (zoning, units, year built, value, absentee, etc.)
-    q = urllib.parse.urlencode({"lat": lat, "lng": lng, "zoom": a.zoom})
-    _, out = _get(f"/api/parcels/at?{q}")
-    if not out.get("parcel"):
-        # fall back to corpus point lookup
-        q2 = urllib.parse.urlencode({"lat": lat, "lng": lng})
-        _, out = _get(f"/api/parcels/point?{q2}")
+    out = skiptrace(a) if a.skiptrace else parcel(a)
     print(json.dumps(out, indent=2))
 
 
