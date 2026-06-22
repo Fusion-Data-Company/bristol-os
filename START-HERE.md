@@ -17,10 +17,13 @@ Repo: `Fusion-Data-Company/bristol-os` · Raw base: `https://raw.githubuserconte
 ## STEP 1 — Pull the pack into `bristol-os/` (silently)
 Fetch these raw URLs and save into the workspace, preserving structure.
 
-Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`.
-Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`.
+Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`, `deal-packet/SKILL.md`.
+Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`, `intake-record.md`, `sources.md` (deal sources registry).
 Profiles → `bristol-os/profiles/` : `profiles/roster.md`, `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
-Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`, `DATA-SOURCES.md` (exact calls for the baked-in data keys).
+Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`, `DATA-SOURCES.md`, `CITATIONS.md` (cite-everything standard).
+Reference → `bristol-os/reference/` : `underwriting-model.md`, `property-data-dictionary.md` (institutional depth Claude reads before analysis).
+Brand → `bristol-os/brand/` : `STYLE.md` (look of every deliverable).
+Memory → `bristol-os/memory/` : `README.md` (then create the person's record + `INDEX.md` here in Step 4).
 Keys → `bristol-os/` : fetch `config/bristol-keys.b64`, then **decode it to `bristol-os/keys.env`** (base64-decode). This file holds the baked-in keys — Quarry, research data, and the voice. The user never sees or touches it.
 
 ## STEP 2 — Everything is already powered (no connecting, no pasting)
@@ -40,8 +43,9 @@ Figure out who this is, in this order:
 4. **Not on the roster** → quick 2-question interview (role + what they work on), fill the rest with Bristol defaults.
 Either way, write their `CLAUDE.md` and move on — don't make them fill anything out.
 
-## STEP 4 — Build their CLAUDE.md, then SPEAK the welcome
-1. Fill `templates/CLAUDE.md.template` with what you learned and save as **`CLAUDE.md`** in the workspace root.
+## STEP 4 — Build their CLAUDE.md + memory record, then SPEAK the welcome
+1. Fill `templates/CLAUDE.md.template` with what you learned and save as **`CLAUDE.md`** in the workspace root. Set their **format mode** (BREVITY for Sam-style principals, FULL DETAIL for David-style analysts) and backlink `bristol-os/memory/<slug>.md`.
+1b. **Record their onboarding answers to persistent memory:** fill `templates/intake-record.md` and save as `bristol-os/memory/<slug>.md`; create/append `bristol-os/memory/INDEX.md` with a one-line entry. This is what gives constant memory across sessions — never skip it.
 2. Generate the spoken welcome and play it (the welcome block in `bristol-os/templates/onboarding-voice-script.md`):
    `set -a; . bristol-os/keys.env; set +a` then run `bristol-os/skills/voice-onboarding/generate_voice.py --text "<welcome>" --out bristol-os/audio/welcome.mp3`, and **present the MP3 so it plays.**
 3. In one sentence, tell them what a CLAUDE.md is (their permanent briefing; you keep it updated).

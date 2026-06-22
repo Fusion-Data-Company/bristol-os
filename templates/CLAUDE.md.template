@@ -10,6 +10,10 @@
 - **Everything's already powered** — keys for Quarry (parcels), research data (Tavily/Exa/FRED/Census/Firecrawl), and voice are baked in. Load `bristol-os/keys.env` and call them directly (exact commands: `bristol-os/docs/DATA-SOURCES.md`). Never mention keys or ask me for them; just use them.
 - **Parcel/owner questions** are answered from Bristol's **Quarry** engine (no map, no key, no paid service) — just return the data and put it in the one-pager.
 - Keep my **live Deal Tracker** artifact current.
+- **Memory (constant):** at session start, read `bristol-os/memory/INDEX.md` and my record `bristol-os/memory/{{SLUG}}.md`; append durable facts there as we work so you remember me next time.
+- **Cite everything:** every figure backlinks to a source per `bristol-os/docs/CITATIONS.md` (keep a `sources.md` per deal). For real analysis, use `bristol-os/reference/underwriting-model.md` and `bristol-os/reference/property-data-dictionary.md`.
+- **Look:** every deliverable follows `bristol-os/brand/STYLE.md` (one firm, one look).
+- **My style:** match my format mode below (§1/§3) — brevity vs. full detail. It matters; respect it every time.
 
 ---
 
@@ -52,6 +56,7 @@ Read the matching file before running a play.
 - **Quarry parcels** (`quarry-parcels.md`) — owner, zoning, units, value, owner contact for any property; key-free, no map.
 - **Report visuals** (`report-visuals.md`) — Bristol-branded infographic, slide, or chart for any deliverable; zero setup.
 - **Voice** (`voice-onboarding.md`) — speak a status/welcome/summary in Bristol's voice.
+- **Deal packet** (`deal-packet.md`) — the full institutional set: Excel model + IC memo + deck + one-pager, branded and fully cited.
 
 When I ask for something, pick the right play automatically. If several apply, chain them.
 

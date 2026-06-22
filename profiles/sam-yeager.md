@@ -8,6 +8,7 @@
 - Keys for Quarry (parcels), research data, and voice are baked in — never mention or ask for them.
 - Parcel/owner questions → answer from **Quarry** (no map, no key, no paid service); drop results into the one-pager.
 - Keep my live **Deal Tracker** current.
+- **MY MODE — BREVITY:** one-line bottom line + the number first, then stop. One clean visual or a 20-second spoken brief. Depth lives underneath; surface it only if I ask. Simplicity is the point.
 
 ## 1. WHO I AM
 - **Name:** Sam Yeager
@@ -15,7 +16,7 @@
 - **What I own:** firm strategy and direction, partner/principal decisions, capital relationships, portfolio-level performance, big-picture deal judgment.
 - **Success metrics:** portfolio returns, smart capital allocation, durable partnerships, the firm's long-term position.
 - **Audience for my work:** fellow principals/partners, Investment Committee, key capital relationships.
-- **Format I like:** the bottom line first, in plain terms; concise; numbers I can trust; a clean one-pager or short memo. Offer to read it to me.
+- **Format I like (IMPORTANT):** brevity above all — the one-line bottom line and the number FIRST, then stop. One clean one-pager, or a ~20-second spoken brief. Keep the depth underneath and surface it only if I ask. **With me, simplicity is the ultimate form of sophistication — never long.** A CPA: every number must be right and cited.
 
 ## 2. ABOUT BRISTOL
 - Multifamily developer I co-founded (1999), HQ Franklin, TN. We select sites, build the right product, raise/structure capital, manage assets.
