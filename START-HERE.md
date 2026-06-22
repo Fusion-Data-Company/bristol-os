@@ -19,7 +19,7 @@ Fetch these raw URLs and save into the workspace, preserving structure.
 
 Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`.
 Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`.
-Profiles → `bristol-os/profiles/` : `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
+Profiles → `bristol-os/profiles/` : `profiles/roster.md`, `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
 Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`, `DATA-SOURCES.md` (exact calls for the baked-in data keys).
 Keys → `bristol-os/` : fetch `config/bristol-keys.b64`, then **decode it to `bristol-os/keys.env`** (base64-decode). This file holds the baked-in keys — Quarry, research data, and the voice. The user never sees or touches it.
 
@@ -30,8 +30,15 @@ The keys are baked in and decoded. With nothing else, you can already:
 - **Speak** → ElevenLabs voice.
 Load keys before running any helper: `set -a; . bristol-os/keys.env; set +a`. Never tell the user about keys; just use them.
 
-## STEP 3 — Learn who they are (fast, then infer the rest)
-Get their name first. **If they're David Hanchrow or Sam Yeager, use the matching pre-built profile (`bristol-os/profiles/david-hanchrow.md` or `sam-yeager.md`) as their `CLAUDE.md` — confirm it in one line and skip the interview.** Otherwise ask only what you can't infer — role and what they work on — two or three questions, conversational; fill the rest with sensible Bristol defaults from `bristol-os/templates/CLAUDE.md.template`. Don't interrogate.
+## STEP 3 — Know who you're working with (identify, don't interrogate)
+Figure out who this is, in this order:
+1. **Auto-detect:** check the name/email this Claude account belongs to (Cowork provides the signed-in user). Match it against `bristol-os/profiles/roster.md` (by email or name). If it matches, greet them by name — **don't ask.**
+2. **If you can't tell** (shared/generic account), ask one line: *"Who am I working with today?"* and match their answer to the roster.
+3. **On a roster match:**
+   - **Sam Yeager / David Hanchrow** → use their full pre-built profile (`profiles/sam-yeager.md` / `david-hanchrow.md`) as their `CLAUDE.md`.
+   - **Anyone else on the roster** → generate their `CLAUDE.md` instantly from their roster row (title + focus + top plays) using `templates/CLAUDE.md.template`. Confirm in one line.
+4. **Not on the roster** → quick 2-question interview (role + what they work on), fill the rest with Bristol defaults.
+Either way, write their `CLAUDE.md` and move on — don't make them fill anything out.
 
 ## STEP 4 — Build their CLAUDE.md, then SPEAK the welcome
 1. Fill `templates/CLAUDE.md.template` with what you learned and save as **`CLAUDE.md`** in the workspace root.
