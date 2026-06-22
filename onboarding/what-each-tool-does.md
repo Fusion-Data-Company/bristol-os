@@ -18,4 +18,4 @@ Bristol OS gives Claude a set of "plays" it runs automatically when you ask. You
 - **Optional upgrades (free or Bristol-paid):** Tavily and Exa for deeper cited search; Apollo/Lusha/Harmonic/CB Insights for investor and business-contact research; Yardi Matrix for professional multifamily data. Ask Claude to "set up deeper research" and it walks you through it.
 
 ## How it stays trustworthy
-Every number is sourced and dated. Claude won't invent figures, and it follows Fair Housing and data-ethics rules automatically (see `data-ethics-and-fair-housing.md`).
+Every number is sourced and dated, and Claude won't invent figures.

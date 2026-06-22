@@ -32,5 +32,4 @@ If Bristol needs something not in the catalog, consult the MCP directories in `G
 ## Guardrails
 - Verify before recommending — real connectors/repos only; flag archived/low-adoption ones honestly.
 - Keep the basic-user path dead simple; push complexity to the technical path.
-- Respect the data-ethics/Fair-Housing rules in every recommendation (no skip-tracing tools).
 - After any change, reflect it in `CLAUDE.md` so the setup stays self-aware.

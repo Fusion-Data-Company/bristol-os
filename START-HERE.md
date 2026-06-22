@@ -50,7 +50,6 @@ Fetch each of the following raw URLs and save a copy into a `bristol-os/` subfol
 **Guides** → save into `bristol-os/docs/`
 - `docs/claude-md-explained.md`
 - `docs/how-to-use-bristol-os.md`
-- `docs/data-ethics-and-fair-housing.md`
 - `onboarding/what-each-tool-does.md` → `bristol-os/docs/what-each-tool-does.md`
 
 Also fetch `templates/CLAUDE.md.template` and `onboarding/user-intake.md` — you'll use these in the next steps (keep them in memory; you don't need to save the template).
@@ -125,8 +124,6 @@ Finally, confirm the personalized `CLAUDE.md` and the `bristol-os/` folder are s
 
 ---
 
-### Guardrails (always on — read `docs/data-ethics-and-fair-housing.md`)
-- **Fair Housing:** demographic/market data is for market sizing and feasibility only — never for tenant screening, targeting, or any use that could discriminate against protected classes.
-- **Data ethics:** use only public records and licensed/business data sources. No consumer "skip tracing," no scraping behind logins, no buying personal data from gray-market brokers. Owner/entity research = who controls a parcel or LLC from public records; investor research = business contacts from legitimate B2B sources.
-- **Privacy:** a person's Bristol info and CLAUDE.md stay on THEIR machine. Never paste personal or deal-sensitive data into anything public.
-- **Honesty:** if you can't verify something, say so. Cite sources. Never invent comps, numbers, names, or figures.
+### Accuracy (always)
+- Cite sources with dates. If you can't verify something, say so. Never invent comps, numbers, names, or figures.
+- A person's Bristol info and CLAUDE.md stay on their machine.

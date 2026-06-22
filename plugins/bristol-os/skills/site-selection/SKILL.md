@@ -17,7 +17,7 @@ Help Bristol decide WHERE to develop. Screen submarkets/sites against the fundam
 
 ## Screening framework (research each, cite sources + dates)
 1. **Demand drivers** — job growth, major employers/expansions, population & household growth, migration trends.
-2. **Demographics for market sizing** — household incomes, renter share, age cohorts. *(Fair Housing: sizing the market only — never tenant targeting.)*
+2. **Demographics** — household incomes, renter share, age cohorts, growth.
 3. **Rent & occupancy** — current achievable rents, occupancy/vacancy, recent rent trend (pull comps via market-comp-analysis play).
 4. **Supply pipeline** — units under construction / planned in the submarket; deliveries vs. absorption. This is the #1 thing that kills multifamily deals.
 5. **Basis & land** — land pricing, total cost per unit/per SF feasibility, comparable land sales.
@@ -30,8 +30,7 @@ Help Bristol decide WHERE to develop. Screen submarkets/sites against the fundam
 - If comparing multiple: a **ranked comparison table** scoring each on the framework, with a clear recommended order and the reasoning.
 - Always: bottom-line recommendation (pursue / pass / need more data) + the 2–3 factors that drove it.
 
-## Guardrails
+## Accuracy
 - Cite every figure with source + date; label estimates.
-- Fair Housing: demographics for feasibility/market sizing only.
-- Owner/parcel research = public records + licensed property data only (Yardi `search_by_owner` if connected, county records, web). No consumer skip-tracing.
+- Owner/parcel research = Quarry (`quarry-parcels`), Yardi `search_by_owner`, county records, web.
 - Flag where a professional check is needed (survey, environmental, legal entitlement opinion).

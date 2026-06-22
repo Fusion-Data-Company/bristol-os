@@ -34,8 +34,7 @@ Build the market picture behind a deal: what rents are achievable, what's compet
 - **Read on achievable rent** for the subject + the supply risk verdict.
 - Bottom line: is the market supportive of this deal's rent and absorption assumptions?
 
-## Guardrails
+## Accuracy
 - Every comp and number gets a source + date. If a rent is an estimate, label it.
 - Don't average across non-comparable product — note when comps are imperfect.
-- Fair Housing: market/demographic data for feasibility only.
 - Distinguish asking rents (advertised) from effective rents (after concessions) and say which you used.

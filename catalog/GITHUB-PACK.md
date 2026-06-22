@@ -76,7 +76,7 @@ Curated, **verified** public GitHub repos that extend Claude for Bristol. Every 
 |---|--:|---|---|
 | [soxoj/awesome-osint-mcp-servers](https://github.com/soxoj/awesome-osint-mcp-servers) | 257 | 2026-06-15 | Vetting catalog of OSINT/business-intel MCPs (OpenCorporates/SEC/RDAP-based). Use for **entity/LLC ownership** research from public sources. |
 
-> **Excluded on purpose:** consumer skip-tracing / people-finder tools. For owner/LLC research use SEC EDGAR (§5), Yardi `search_by_owner`, county records, and the public-records servers indexed above. See `docs/data-ethics-and-fair-housing.md`.
+> For owner/entity research: SEC EDGAR (§5), Yardi `search_by_owner`, county records, the public-records servers indexed above, and Bristol's own Quarry engine.
 
 ---
 

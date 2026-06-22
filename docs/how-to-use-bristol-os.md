@@ -26,7 +26,6 @@ Real saved files in your workspace — memos, market studies, one-pagers, resear
 
 ## What it won't do (on purpose)
 - It won't invent numbers — if it can't verify something, it tells you.
-- It won't do consumer "skip tracing" or anything that risks Fair Housing or privacy rules — it sticks to public records and legitimate business data.
 - It gives you the facts and analysis to decide; final calls and legal/tax/securities questions go to the right professional.
 
 That's it. Open the folder, say what you need, get the work back.

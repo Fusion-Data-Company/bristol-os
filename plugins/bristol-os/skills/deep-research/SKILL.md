@@ -33,7 +33,6 @@ If only built-in search is available, still do the full method below — just re
 - **So what for Bristol** — implications for the deal/market/decision at hand.
 - **Sources** — list with links and dates.
 
-## Guardrails
+## Accuracy
 - If you can't verify a claim, say so. Do not fabricate figures, comps, dates, or names.
-- Public and licensed sources only (see `bristol-os/docs/data-ethics-and-fair-housing.md`).
 - Distinguish fact (sourced) from estimate (your reasoning) — label estimates.

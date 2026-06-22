@@ -27,7 +27,6 @@ There is nothing to download, no account to create, and no code to run. The free
 
 ## What it deliberately won't do
 - It won't invent numbers — everything is sourced and dated, and it says when it can't verify something.
-- It follows **Fair Housing** and **data-ethics** rules automatically (no consumer skip-tracing; public records + licensed business data only).
 - It informs decisions; it doesn't give legal, tax, securities, or investment advice.
 
 ## Tools & repos it can pull in
@@ -53,7 +52,7 @@ onboarding/              ← interview + connector setup + tool guide
 catalog/                 ← TOOL-CATALOG.md + GITHUB-PACK.md
 plugins/bristol-os/skills/   ← 8 plays (7 research + knowledge-packs)
 templates/               ← memo, market study, one-pager, folder structure
-docs/                    ← "what is a CLAUDE.md", how-to, ethics & Fair Housing
+docs/                    ← "what is a CLAUDE.md" + how-to guide
 .claude-plugin/marketplace.json  ← optional, for Claude Code users
 ```
 

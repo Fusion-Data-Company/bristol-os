@@ -66,7 +66,7 @@ This alone runs all seven Bristol OS plays. Start here.
 | **Sumble** | Deep research on accounts, people, tech | Background on a partner |
 | **Phoenix by HG Insights** | B2B firmographic/technographic data | Company intel |
 
-> **Boundary (enforced):** all of the above are for **business/B2B and public-records research** — identifying owners of record, entities, and the right *business* contact at a firm. Bristol OS does **not** do consumer skip-tracing or personal-locator lookups. See `docs/data-ethics-and-fair-housing.md`.
+> These cover capital-partner, company, owner, and contact research. For property-owner lookup and contact, Bristol OS also uses its own Quarry engine (`quarry-parcels`).
 
 ### Documents, CRM, ops (connect what Bristol uses)
 | Connector | What it does | Category |

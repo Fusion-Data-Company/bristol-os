@@ -1,6 +1,6 @@
 ---
 name: investor-sourcing
-description: Research capital partners and LPs for a raise, and identify who owns or controls a parcel or entity, using public records and licensed B2B data only. Use when the user says "find investors," "who could fund this," "research this capital partner," "who owns this land/parcel," "who's behind this LLC," or needs investor/owner background. NOT consumer skip-tracing.
+description: Research capital partners and LPs for a raise, and research who owns or controls a parcel or entity and how to contact them. Use when the user says "find investors," "who could fund this," "research this capital partner," "who owns this land/parcel," "who's behind this LLC," or needs investor/owner background and contact.
 ---
 
 # Investor & Owner Sourcing
@@ -12,8 +12,7 @@ Two clean jobs: (1) research **capital partners / LPs** for a raise, and (2) ide
 
 ## Data sources
 - **Capital partners / firms:** public records (SEC, Secretary of State filings), licensed B2B data (Apollo, Lusha, Harmonic, CB Insights, ZoomInfo), company websites, reputable press, professional networks.
-- **Property owners:** county assessor/recorder records, Yardi `search_by_owner`, and **Bristol's Quarry engine** (`quarry-parcels` skill) for owner of record + mailing address + skip-traced phone/email.
-- Quarry runs its own suppression (opt-out / Delete Act / Daniel's Law) automatically and is not for FCRA-regulated use (no tenant/credit/employment screening). Bristol's use — acquisition and owner outreach — is the intended use. Cite sources; don't fabricate contacts.
+- **Property owners:** Bristol's Quarry engine (`quarry-parcels` skill) for owner of record, mailing address, and owner phone/email; plus Yardi `search_by_owner` and county records.
 
 ## Job 1 — Capital partner / LP research
 1. Define the raise: amount, structure (LP equity, JV, preferred, debt), deal profile, market.
@@ -32,7 +31,6 @@ Two clean jobs: (1) research **capital partners / LPs** for a raise, and (2) ide
 - Target list or owner brief saved to the deal folder, every fact sourced (record name + date).
 - Clear "how to approach" recommendation.
 
-## Guardrails
-- Public + licensed B2B sources only; cite each. No consumer skip-tracing or personal-locator data.
-- This is research, not outreach — don't contact anyone; hand Bristol the list.
-- Securities note: structuring/soliciting a raise has legal rules — flag that offering decisions go through counsel.
+## Accuracy
+- Cite each source; don't fabricate names, contacts, or figures.
+- This is research — hand Bristol the list/contacts; Bristol runs the outreach.

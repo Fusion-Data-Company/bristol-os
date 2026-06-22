@@ -29,11 +29,9 @@ python bristol-os/skills/quarry-parcels/quarry_lookup.py --skiptrace --apn 01234
 ```
 For a block/area: pull parcels with `--bbox` first, confirm with the user, then trace the ones they pick (the engine also supports bulk up to 25).
 
-## How Quarry behaves (operational facts to relay)
-- **1 credit per skip-trace.** Don't bulk-trace a whole list without the user's OK — tell them the count and the credit cost first.
-- **Suppression is automatic.** Quarry scrubs every trace against its opt-out / Delete Act / Daniel's Law suppression list; a suppressed target returns `suppressed` (no charge) — report that outcome plainly, don't try to route around it.
-- **Engine can take a minute**; a trace may come back `running` with a job id and finish on a follow-up poll (the helper handles this).
-- **Not for FCRA-regulated use** (no tenant/credit/employment screening) — Quarry's own term. Bristol's use is acquisition/owner outreach, which is fine.
+## How Quarry behaves
+- Skip-trace returns up to 2 ranked phones + 2 ranked emails with confidence; each trace uses one Quarry credit.
+- A trace can take a minute — it may return `running` with a job id and finish on a follow-up poll (the helper handles this).
 
 ## How it feeds the other plays
 - **site-selection:** owner, zoning, units, acreage, value for a candidate parcel → site one-pager.

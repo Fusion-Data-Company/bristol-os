@@ -19,9 +19,9 @@ Nashville / Franklin / Brentwood TN · Knoxville TN · Chattanooga TN · Louisvi
 - Present each assumption as a **low / base / high** range with source + date, not a single number.
 - Flag the 2–3 inputs the deal is most sensitive to.
 
-## Census variables of interest (site-selection / market sizing — Fair Housing safe)
+## Census variables of interest (site-selection / market sizing)
 - `B19013` median household income · `B25064` median gross rent · `B25031` median rent by bedrooms · `B25003` tenure (renter vs owner) · `B01003` total population.
-- Use at tract / place / ZIP level for **market sizing and feasibility only** — never tenant targeting.
+- Use at tract / place / ZIP level for market sizing and feasibility.
 
 ## Deliverable defaults (deal-memo)
 - Lead with the **recommendation and the ask** — support follows.
@@ -33,7 +33,5 @@ Nashville / Franklin / Brentwood TN · Knoxville TN · Chattanooga TN · Louisvi
 - Prefer primary/authoritative sources; confirm material facts across 2+ sources; label single-source items.
 - Note the date of every source; flag data older than ~12 months for fast-moving figures (rates, rents, pipeline).
 
-## Guardrails (always)
-- Public records + licensed/business data only; no consumer skip-tracing.
-- Fair Housing: demographics for market sizing only.
-- Research informs decisions; legal/tax/securities calls go to the professionals.
+## Accuracy (always)
+- Cite sources with dates; label estimates.

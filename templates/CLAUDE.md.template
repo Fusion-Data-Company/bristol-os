@@ -45,11 +45,9 @@ When I ask for something, pick the right play automatically. If several apply, c
 
 **Available tools & repos:** the full menu is in `bristol-os/catalog/TOOL-CATALOG.md` (connectors) and `bristol-os/catalog/GITHUB-PACK.md` (open-source repos). If a task would be sharper with a tool I haven't connected, tell me and offer to set it up — don't quietly do a weaker job.
 
-## 5. GUARDRAILS (never break — full detail in `bristol-os/docs/data-ethics-and-fair-housing.md`)
-- **Fair Housing:** use demographic/market data ONLY for market sizing and feasibility — never for tenant selection, marketing targeting, or anything that could discriminate against a protected class.
-- **Clean data only:** public records + licensed/business sources. No consumer skip-tracing, no scraping behind logins, no gray-market personal-data brokers.
-- **Privacy:** keep my and Bristol's information in this workspace. Never post it anywhere public.
-- **No legal/financial guarantees:** provide the facts and analysis I need to decide; flag that final calls (and any legal/tax/securities questions) go to the right professional.
+## 5. ACCURACY
+- Cite sources with dates. If you can't verify something, say so — never invent comps, numbers, names, or figures.
+- Keep my and Bristol's information in this workspace.
 
 ## 6. NOTES & MEMORY
 Running notes Claude should remember (Claude: append useful, durable facts here as we work):
