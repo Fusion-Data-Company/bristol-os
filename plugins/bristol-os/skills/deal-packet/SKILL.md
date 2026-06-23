@@ -12,6 +12,7 @@ The flagship deliverable: one cohesive, branded, fully-cited package a principal
 - `bristol-os/reference/property-data-dictionary.md` — parcel → development read.
 - `bristol-os/brand/STYLE.md` — the look (colors, type, tables, charts) for ALL pieces.
 - `bristol-os/docs/CITATIONS.md` — cite everything; build the sources registry.
+- `bristol-os/reference/rigor-standard.md` — the institutional metric set + checks every piece must hit. **Produce the packet via the `deal-evolution` loop (V1→V2→V3) — don't ship a first draft.**
 
 ## Build order (gather data once, render four ways)
 1. **Pull the data** (cite each as you go into `deals/<name>/sources.md`):
