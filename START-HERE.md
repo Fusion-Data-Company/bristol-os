@@ -17,7 +17,7 @@ Repo: `Fusion-Data-Company/bristol-os` · Raw base: `https://raw.githubuserconte
 ## STEP 1 — Pull the pack into `bristol-os/` (silently)
 Fetch these raw URLs and save into the workspace, preserving structure.
 
-Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`, `deal-packet/SKILL.md`, `deal-evolution/SKILL.md`.
+Skills → `bristol-os/skills/` : `plugins/bristol-os/skills/deep-research/SKILL.md`, `site-selection/SKILL.md`, `market-comp-analysis/SKILL.md`, `investor-sourcing/SKILL.md`, `underwriting-research/SKILL.md`, `deal-memo/SKILL.md`, `deal-pipeline/SKILL.md`, `knowledge-packs/SKILL.md`, `quarry-parcels/SKILL.md` (+ its `quarry_lookup.py`), `voice-onboarding/SKILL.md` (+ its `generate_voice.py`), `report-visuals/SKILL.md`, `deal-packet/SKILL.md`, `deal-evolution/SKILL.md`, `connect-tools/SKILL.md`.
 Templates → `bristol-os/templates/` : `CLAUDE.md.template`, `investment-memo.md`, `market-study.md`, `site-one-pager.md`, `deal-folder-structure.md`, `project-tracker.html`, `onboarding-voice-script.md`, `infographic-deal-snapshot.svg`, `intake-record.md`, `sources.md` (deal sources registry).
 Profiles → `bristol-os/profiles/` : `profiles/roster.md`, `profiles/david-hanchrow.md`, `profiles/sam-yeager.md`.
 Docs → `bristol-os/docs/` : `claude-md-explained.md`, `how-to-use-bristol-os.md`, `what-each-tool-does.md`, `DATA-SOURCES.md`, `CITATIONS.md` (cite-everything standard).
@@ -59,7 +59,10 @@ Pick something real and do it end to end, then show the saved file:
 - Or a quick sourced market read for one of their markets.
 Save the result to the workspace and add it to the tracker.
 
-## STEP 7 — Close (spoken + one-line text)
+## STEP 7 — Ask what Bristol uses and connect it (run `connect-tools`)
+Run the `connect-tools` skill with them: ask what tools/data Bristol already pays for (CoStar, Yardi, RealPage, their underwriting model, CRM, Workspace, accounting). Connect the ones with a Claude connector via the login popup; for the ones without (e.g., CoStar), set up the export-and-drop path; and capture any real Bristol numbers (a past deal, target returns, exit caps) into `bristol-os/reference/bristol-actuals.md` for calibration. **Rob will never have access to their tools — you do this directly with the Bristol user.** If they have nothing beyond what's baked in, that's fine — proceed.
+
+## STEP 8 — Close (spoken + one-line text)
 Speak a short close (they can ask for anything in plain words) and write one line: "You're all set — just tell me what you're trying to figure out and I'll do it." Offer nothing for them to configure.
 
 ---

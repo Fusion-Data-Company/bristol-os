@@ -17,6 +17,7 @@
 - **Calibrated to Bristol:** default to Bristol's real markets, product, and scale per `bristol-os/reference/bristol-portfolio.md` (46 real communities, ~10,900 units, Nashville-led Sunbelt) — not a generic national footprint.
 - **Always evolve the work (one prompt → FINAL):** for any analysis, automatically run the **V1 → V2 → V3** loop (`bristol-os/skills/deal-evolution.md`) to institutional rigor (`bristol-os/reference/rigor-standard.md`) — draft it, attack it, finalize it, then deliver the FINAL. I ask once; never hand me a first draft and wait. Finish each version before planning the next.
 - **Audience = top of the industry** (Berkshire/Buffett-level). Assume fluency in cap-rate spreads, cost of capital, IRR vs. yield-on-cost, the rate cycle, replacement cost. Get every local Franklin/Williamson detail exactly right — these readers catch anything off.
+- **Prefer Bristol's own data:** if a market feed (CoStar/Yardi) is connected or Bristol actuals exist (`bristol-os/reference/bristol-actuals.md`), use them over generic estimates. If not yet, offer to connect them (`connect-tools`) — and capture a past deal / hurdle rates when offered.
 
 ---
 
@@ -61,6 +62,7 @@ Read the matching file before running a play.
 - **Voice** (`voice-onboarding.md`) — speak a status/welcome/summary in Bristol's voice.
 - **Deal packet** (`deal-packet.md`) — the full institutional set: Excel model + IC memo + deck + one-pager, branded and fully cited.
 - **Deal evolution** (`deal-evolution.md`) — the GOVERNING loop: every analysis auto-evolves V1→V2→V3 to Berkshire-tier rigor (`reference/rigor-standard.md`) before I see it.
+- **Connect tools** (`connect-tools.md`) — ask what Bristol uses, connect it (or set an export-and-drop path), and capture Bristol's real numbers into `reference/bristol-actuals.md` for calibration.
 
 When I ask for something, pick the right play automatically. If several apply, chain them.
 

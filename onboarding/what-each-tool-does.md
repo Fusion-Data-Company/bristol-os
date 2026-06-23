@@ -12,6 +12,7 @@ Bristol OS gives Claude a set of "plays" it runs automatically when you ask. You
 | "Write the IC memo" / "Make a one-pager" | **Deal memo** | A polished memo, study, or one-pager for your audience |
 | "What's in my pipeline?" | **Deal pipeline** | A living deal tracker + status updates |
 | "Make me more powerful / add tools" | **Knowledge packs** | Recommends & sets up the right connectors and repos for you |
+| "Connect our tools / make this more accurate" | **Connect tools** | Hooks up CoStar / Yardi / your model (or an export path) and calibrates to Bristol's real numbers |
 
 ## The research power behind it
 - **Out of the box:** Claude's built-in web search — works immediately, no setup.
