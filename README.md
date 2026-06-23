@@ -44,6 +44,12 @@ bash config/setup.sh                    # wires up only what your keys + runtime
 ```
 `config/CONFIG-GUIDE.md` has the exact steps, per-server nuance, and the two clone-and-build servers. `config/bristol-defaults.md` holds Bristol's tuned defaults (markets, comp radius, FRED series, Census variables). First-party connectors stay one-click: **Connect → log in on the popup → done.**
 
+## Documentation
+- **[INSTALL.md](INSTALL.md)** — the one-paste command + what happens.
+- **[docs/](docs/README.md)** — documentation home: [how to use](docs/how-to-use-bristol-os.md), [architecture](docs/ARCHITECTURE.md), [citations](docs/CITATIONS.md), [data sources](docs/DATA-SOURCES.md), [what is a CLAUDE.md](docs/claude-md-explained.md).
+- **[reference/](reference/rigor-standard.md)** — [rigor standard](reference/rigor-standard.md), [underwriting model](reference/underwriting-model.md), [property-data dictionary](reference/property-data-dictionary.md), [Bristol portfolio](reference/bristol-portfolio.md).
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** · **[SECURITY.md](SECURITY.md)** · **[CHANGELOG.md](CHANGELOG.md)** · **[STATUS.md](STATUS.md)** · **[WALKTHROUGH.md](WALKTHROUGH.md)** · **[LICENSE](LICENSE)** (MIT)
+
 ## What's in this repo
 ```
 START-HERE.md            ← the installer Claude reads and executes
